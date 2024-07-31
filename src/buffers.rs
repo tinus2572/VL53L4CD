@@ -1,6 +1,6 @@
 
 pub(crate) const VL53L4CD_DEFAULT_CONFIGURATION: [u8; 91] = [
-	0x12, /* 0x2d : set bit 2 and 5 to 1 for fast plus mode (1MHz I2C),
+	if cfg!(feature="VL53L4CD_I2C_FAST_MODE_PLUS") { 0x12 } else { 0x00 }, /* 0x2d : set bit 2 and 5 to 1 for fast plus mode (1MHz I2C),
 	 else don't touch */
 	0x00, /* 0x2e : bit 0 if I2C pulled up at 1.8V, else set bit 0 to 1
 	 (pull up at AVDD) */
